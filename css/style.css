@@ -10,6 +10,10 @@ body {
     margin: 2rem auto;
 }
 
+img {
+    height: 219px;
+}
+
 #DrpDwn {
     text-align: center;
 }
