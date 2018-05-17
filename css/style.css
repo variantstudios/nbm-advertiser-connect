@@ -25,7 +25,7 @@ table {
 }
 
 thead tr th {
-    background: #ddd;
+    background: #efefef;
 }
 
 th {
@@ -33,7 +33,7 @@ th {
 }
 
 tr:nth-child(even) {
-    background: rgb(235, 235, 235);
+    background: #f7f7f7;
 }
 
 tr:nth-child(odd) {
@@ -45,7 +45,7 @@ table {
 }
 
 tr {
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #d1d1d1;
 }
 
 th,
