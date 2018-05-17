@@ -1,0 +1,28 @@
+{
+    "name": "nbm-advertiser-connect",
+    "version": "1.0.0",
+    "description": "NBM Advertiser Connect",
+    "main": "index.js",
+    "dependencies": {
+        "surge": "^0.20.1"
+    },
+    "devDependencies": {
+        "git-scripts": "^0.2.1",
+        "surge": "^0.20.1"
+    },
+    "git": {
+        "scripts": {
+            "pre-push": "surge --project ./ --domain nbm-advertiser-connect.surge.sh"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/variantstudios/nbm-advertiser-connect.git"
+    },
+    "author": "Brent Robbins",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/variantstudios/nbm-advertiser-connect/issues"
+    },
+    "homepage": "https://github.com/variantstudios/nbm-advertiser-connect#readme"
+}
