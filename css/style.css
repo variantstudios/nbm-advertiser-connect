@@ -135,7 +135,7 @@ td a {
 @-webkit-keyframes fadein {
     from {
         opacity: 0;
-        top: -40px;
+        top: -20px;
     }
     to {
         opacity: 1;
@@ -146,7 +146,7 @@ td a {
 @keyframes fadein {
     from {
         opacity: 0;
-        top: -40px;
+        top: -20px;
     }
     to {
         opacity: 1;
