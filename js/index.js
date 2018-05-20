@@ -53,7 +53,7 @@ $.ajax({
 			selectedDate = createDate();
 		}
 		function hotfixDate(val){
-			return val + '-01T01:00:00Z';
+			return val + '-01T00:00:00Z';
 		}
 
 		var hotDate = hotfixDate(selectedDate);
@@ -91,7 +91,7 @@ $.ajax({
 		//sorting the year
 		yearsArray.sort();
 		var $yearDropDown = $('#DropDown_Year');
-		var $container = $('#details').find('tbody');
+		var $container = $('#details').find('ul');
 
 		// append the years to select
 		$.each(yearsArray, function(i) {
@@ -100,35 +100,57 @@ $.ajax({
 
 		$yearDropDown.change(function() {
 			var selectedyear = this.value;
+			// console.log('val ' + selectedyear);
+			if (selectedyear !== '') {
 			//filter based on  selected year.
-			makesArray = jQuery.grep(pupData, function(product, i) {
-				return product.aa_x002e_nbm_issuedate == selectedyear;
-			});
-			updateTable(makesArray);
+				makesArray = jQuery.grep(pupData, function(product, i) {
+					return product.aa_x002e_nbm_issuedate == selectedyear;
+				});
+				updateTable(makesArray);
+
+				$('.selectedDate').text(convertDate(selectedyear) + ' ISSUE');
+			}
 		});
 
 
+		function testing(val) {
+			//console.log(val);
+			var selectedyear = val;
+			//filter based on  selected year.
+			makesArray = jQuery.grep(pupData, function(product, i) {
+				return product.aa_x002e_nbm_issuedate.slice(0, 7) == selectedyear;
+			});
+			//console.log(makesArray);
+			updateTable(makesArray);
+			$('.selectedDate').text(convertDate(selectedDate) + ' ISSUE');
+		};
 
 		//To update the table element with selected items
-		updateTable = function(collection) {
-			$container.empty();
-			for (var i = 0; i < collection.length; i++) {
-				if (collection[i].a_006a078ff371e111b2141cc1def177b7_x002e_nbm_publication == selectedPub) {
-					$container.append(
-						'<tr><td><a href="' +
-							collection[i].a_92b77a4070bd4d1a82d9fa6ce38df2cc_x002e_websiteurl +
-							'" target="_blank">' +
-							collection[i].nbm_adindexname +
-							' - ' +
-							collection[i].a_006a078ff371e111b2141cc1def177b7_x002e_nbm_publication + ' ' + convertDate(collection[i].aa_x002e_nbm_issuedate) +
-							'</a></td></tr> '
-					);
+		updateTable = function (collection) {
+			if (collection) {
+				$container.empty();
+				for (var i = 0; i < collection.length; i++) {
+					if (collection[i].a_006a078ff371e111b2141cc1def177b7_x002e_nbm_publication == selectedPub) {
+						// $container.append(
+						// 	'<tr><td><a href="' +
+						// 	collection[i].a_92b77a4070bd4d1a82d9fa6ce38df2cc_x002e_websiteurl +
+						// 	'" target="_blank">' +
+						// 	collection[i].nbm_adindexname +
+						// 	' - ' +
+						// 	collection[i].a_006a078ff371e111b2141cc1def177b7_x002e_nbm_publication + ' ' + convertDate(collection[i].aa_x002e_nbm_issuedate) +
+						// 	'</a></td></tr> '
+						// );
+						$container.append( 
+							'<li>' + '<a href="' + collection[i].a_92b77a4070bd4d1a82d9fa6ce38df2cc_x002e_websiteurl + '" target="_blank">' + collection[i].nbm_adindexname + '</a></li>'
+						);
+					}
 				}
 			}
 		};
 
-		updateTable(pupData);
-		
+		//updateTable(pupData);
+		//testing(hotDate);
+		testing(selectedDate);
 
 	},
 	complete: function(data) {
