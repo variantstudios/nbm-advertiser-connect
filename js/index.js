@@ -52,17 +52,13 @@ $.ajax({
 		} else {
 			selectedDate = createDate();
 		}
-		function hotfixDate(val){
+		function hotfixDate(val) {
 			return val + '-01T00:00:00Z';
 		}
 
 		var hotDate = hotfixDate(selectedDate);
-		console.log(hotDate);
-		$('.selectedDate').text(hotDate);
-
-		// console.log(selectedDate);
-
-		// var test = '2018-01-01T06:00:00Z';
+		//console.log(hotDate);
+		//$('.selectedDate').text(hotDate);
 
 		function cleanDate(val) {
 			return val.slice(0, 7);
@@ -70,10 +66,23 @@ $.ajax({
 		console.log(cleanDate(selectedDate));
 
 		function convertDate(val) {
-			var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+			var monthNames = [
+				'January',
+				'February',
+				'March',
+				'April',
+				'May',
+				'June',
+				'July',
+				'August',
+				'September',
+				'October',
+				'November',
+				'December'
+			];
 			var Month = monthNames[parseInt(val.substring(5, 7) - 1)];
-			var Year = val.substring(0, 4)
-			return  Month + ' ' + Year;
+			var Year = val.substring(0, 4);
+			return Month + ' ' + Year;
 		}
 
 		console.log(convertDate(selectedDate));
@@ -102,16 +111,15 @@ $.ajax({
 			var selectedyear = this.value;
 			// console.log('val ' + selectedyear);
 			if (selectedyear !== '') {
-			//filter based on  selected year.
+				//filter based on  selected year.
 				makesArray = jQuery.grep(pupData, function(product, i) {
 					return product.aa_x002e_nbm_issuedate == selectedyear;
 				});
 				updateTable(makesArray);
 
-				$('.selectedDate').text(convertDate(selectedyear) + ' ISSUE');
+				//$('.selectedDate').text(convertDate(selectedyear) + ' ISSUE');
 			}
 		});
-
 
 		function testing(val) {
 			//console.log(val);
@@ -122,11 +130,11 @@ $.ajax({
 			});
 			//console.log(makesArray);
 			updateTable(makesArray);
-			$('.selectedDate').text(convertDate(selectedDate) + ' ISSUE');
-		};
+			//$('.selectedDate').text(convertDate(selectedDate) + ' ISSUE');
+		}
 
 		//To update the table element with selected items
-		updateTable = function (collection) {
+		updateTable = function(collection) {
 			if (collection) {
 				$container.empty();
 				for (var i = 0; i < collection.length; i++) {
@@ -140,8 +148,13 @@ $.ajax({
 						// 	collection[i].a_006a078ff371e111b2141cc1def177b7_x002e_nbm_publication + ' ' + convertDate(collection[i].aa_x002e_nbm_issuedate) +
 						// 	'</a></td></tr> '
 						// );
-						$container.append( 
-							'<li>' + '<a href="' + collection[i].a_92b77a4070bd4d1a82d9fa6ce38df2cc_x002e_websiteurl + '" target="_blank">' + collection[i].nbm_adindexname + '</a></li>'
+						$container.append(
+							'<li>' +
+								'<a href="' +
+								collection[i].a_92b77a4070bd4d1a82d9fa6ce38df2cc_x002e_websiteurl +
+								'" target="_blank">' +
+								collection[i].nbm_adindexname +
+								'</a></li>'
 						);
 					}
 				}
@@ -151,7 +164,6 @@ $.ajax({
 		//updateTable(pupData);
 		//testing(hotDate);
 		testing(selectedDate);
-
 	},
 	complete: function(data) {
 		// Hide image container
