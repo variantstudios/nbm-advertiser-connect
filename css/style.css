@@ -180,11 +180,12 @@ header img {
 
 #details ul li {
     display: block;
-    padding: .5rem 0;
+    padding: .2rem 0;
 }
 
 #details ul li a {
     color: #333333;
+    line-height: 1.6;
 }
 
 #details ul li a:hover {
